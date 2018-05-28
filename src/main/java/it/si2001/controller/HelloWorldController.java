@@ -12,7 +12,7 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(ModelMap model){
-        return "index";
+        return "home";
     }
 
 }

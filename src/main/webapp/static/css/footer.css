@@ -1,0 +1,30 @@
+#red{
+    border-top: solid #4190C9;
+    border-width: 0.39em;
+    background: #2E2E2E;
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+
+.text {
+    color: white;
+    font-family: Lato;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.pagehead{
+    text-align: center;
+}
+
+.text2 {
+    color: white;
+    font-family: Lato;
+    text-align: center;
+    margin-top: auto;
+}
+
+.end {
+    margin:0;
+}
