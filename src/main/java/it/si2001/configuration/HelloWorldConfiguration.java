@@ -29,8 +29,6 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan(basePackages = "it.si2001")
 public class HelloWorldConfiguration extends WebMvcConfigurerAdapter {
 
-
-
     @Bean
     public TilesConfigurer tilesConfigurer(){
         TilesConfigurer tilesConfigurer = new TilesConfigurer();

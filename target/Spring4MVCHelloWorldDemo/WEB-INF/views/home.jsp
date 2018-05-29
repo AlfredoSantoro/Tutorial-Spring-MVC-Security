@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form class="col-lg-offset-4" role="search">
     <div class="form-inline">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" id="searchHome">
         <button class="btn btn-primary">Search</button>
     </div>
 </form>
@@ -17,52 +18,25 @@
     </tr>
     </thead>
     <tbody>
+    <c:forEach items="${users}" var="user">
     <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Salerno</td>
-        <td>22/2/1994</td>
-        <td>Single</td>
-        <td>Java</td>
+        <td>${user.firstname}</td>
+        <td>${user.lastname}</td>
+        <td>${user.country}</td>
+        <td>${user.birthDate}</td>
+        <td>${user.status.status}</td>
+        <c:if test="${not empty user.skills}">
+            <c:forEach items="${user.skills}" var="skills">
+                <c:set var="value" value="${value} ${skills.name}"></c:set>
+            </c:forEach>
+        </c:if>
+        <td><c:out value="${value}"></c:out></td>
         <td>
-
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Edit
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Delete</a></li>
-                </ul>
-            </div>
-
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
-
-    <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Salerno</td>
-        <td>22/2/1994</td>
-        <td>Single</td>
-        <td>Java</td>
-
-        <td>
-
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Edit
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a href="#">Delete</a></li>
-                </ul>
-            </div>
-
-        </td>
-    </tr>
-
-
+    </c:forEach>
     </tbody>
 </table>
 

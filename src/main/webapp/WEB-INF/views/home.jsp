@@ -1,7 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form class="col-lg-offset-4" role="search">
     <div class="form-inline">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" id="searchHome">
         <button class="btn btn-primary">Search</button>
     </div>
 </form>
@@ -32,17 +32,8 @@
         </c:if>
         <td><c:out value="${value}"></c:out></td>
         <td>
-
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Edit
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Delete</a></li>
-                </ul>
-            </div>
-
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     </c:forEach>

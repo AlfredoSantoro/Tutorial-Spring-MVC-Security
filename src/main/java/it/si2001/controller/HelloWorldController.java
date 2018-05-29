@@ -19,12 +19,10 @@ public class HelloWorldController {
 
     @Autowired
     public HelloWorldController(UserService userService){
-        this.Userservice = userService;
-    }
+        this.Userservice = userService; }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(ModelMap model){
         List<User> users = this.Userservice.findAllUsers();
         model.addAttribute("users",users);
-        return "home"; }
-}
+        return "home"; }}
