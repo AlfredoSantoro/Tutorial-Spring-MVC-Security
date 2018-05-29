@@ -10,4 +10,10 @@ public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
 
     @Override
     public List<User> allUsers() {
-        return  getEntityManager().createQuery("select U from User U").getResultList(); }}
+        return  getEntityManager().createQuery("select U from User U").getResultList(); }
+
+    @Override
+    public void save(User user) {
+        getEntityManager().persist(user);
+    }
+}

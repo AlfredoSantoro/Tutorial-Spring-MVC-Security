@@ -1,5 +1,7 @@
 package it.si2001.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -17,7 +19,6 @@ public class Skills implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idSkills", nullable = false, unique = true)
     private int idSkills;
-
 
     @Column(name="name", length=45, nullable=false)
     private String name;

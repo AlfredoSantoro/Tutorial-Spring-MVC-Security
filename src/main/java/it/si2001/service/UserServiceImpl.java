@@ -20,4 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllUsers() {
-        return dao.allUsers(); }}
+        return dao.allUsers(); }
+
+    @Override
+    public void save(User u) {
+        dao.save(u);
+    }
+
+
+}

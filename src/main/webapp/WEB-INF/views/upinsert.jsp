@@ -7,25 +7,38 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- multistep form -->
+
+
+<form:form method="post" modelAttribute="user"  class="form-horizontal" action="/">
 
 <div class="container">
 <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">Firstname</label>
     <div class="col-10">
-        <input class="form-control" type="text" value="" id="example-text-input">
+        <form:input class="form-control input-sm" type="text" path="firstname" value="" id="example-text-input"/>
+        <div class="has-error" style="color: red">
+            <form:errors path="firstname" class="help-inline"/>
+        </div>
     </div>
 </div>
 <div class="form-group row">
     <label for="example-search-input" class="col-2 col-form-label">Lastname</label>
     <div class="col-10">
-        <input class="form-control" type="search" value="" id="example-search-input">
+        <form:input class="form-control input-sm" type="search" path="lastname" value="" id="example-search-input"/>
+        <div class="has-error" style="color: red">
+        <form:errors path="lastname" class="help-inline"/>
+        </div>
     </div>
 </div>
 <div class="form-group row">
-    <label for="example-email-input" class="col-2 col-form-label">Country</label>
+    <label for="example-text-input" class="col-2 col-form-label">Country</label>
     <div class="col-10">
-        <input class="form-control" type="email" value="" id="example-email-input">
+        <form:input class="form-control input-sm" path="country" type="text" value="" id=""/>
+        <div class="has-error" style="color: red">
+        <form:errors path="country" class="help-inline"/>
+        </div>
     </div>
 </div>
 
@@ -33,30 +46,34 @@
 <div class="form-group row">
     <label for="example-date-input" class="col-2 col-form-label">Birthdate</label>
     <div class="col-10">
-        <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+        <form:input class="form-control input-sm" type="date" path="birthDate" value="" id="example-date-input"/>
+        <div class="has-error" style="color: red">
+        <form:errors path="birthDate" class="help-inline"/>
+        </div>
     </div>
 </div>
 <div class="form-group">
     <label for="exampleSelect2">Skills</label>
-    <select multiple class="form-control" id="exampleSelect2">
+    <form:select multiple="true" class="form-control" path="skills" id="exampleSelect2">
         <option>C</option>
         <option>C++</option>
         <option>Css</option>
         <option>HTML</option>
         <option>Java</option>
         <option>Javascript</option>
-    </select>
+    </form:select>
 </div>
 
 <div class="form-group">
     <label for="exampleSelect1">Marital status</label>
-    <select class="form-control" id="exampleSelect1">
+    <form:select class="form-control" id="exampleSelect1" path="status">
         <option>Divorced</option>
         <option>Married</option>
         <option>Single</option>
         <option>Widowed</option>
-    </select>
+    </form:select>
 </div>
-    <a class="btn btn-primary" href= " <c:url value="#" /> ">Submit</a>
-    <a class="btn btn-primary" href="<c:url value="/" />">Cancel</a>
+    <input type="submit" value="Register" class="btn btn-primary btn-sm">
 </div>
+
+</form:form>

@@ -1,6 +1,9 @@
 package it.si2001.model;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -24,15 +27,22 @@ public class User implements Serializable {
     @JoinColumn(name = "userStatus")
     private MaritalStatus status;
 
+    @NotEmpty
+    @Size(max = 40)
     @Column(name="firstname", length=40, nullable=false)
     private String firstname;
 
+    @NotEmpty @Size(max = 40)
     @Column(name="lastname", length=40, nullable=false)
     private String lastname;
 
+    @Size(max = 40)
+    @NotEmpty
     @Column(name="country", length=40, nullable=true)
     private String country;
 
+    @NotEmpty
+    @Size(max = 40)
     @Column(name="birthDate", length=40, nullable=true)
     private String birthDate;
 
@@ -44,6 +54,7 @@ public class User implements Serializable {
 
         return skills;
     }
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "recordings" , joinColumns = { @JoinColumn(name = "user_id")}, inverseJoinColumns = { @JoinColumn(name = "idSkills")})

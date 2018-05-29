@@ -5,6 +5,9 @@
         <button class="btn btn-primary">Search</button>
     </div>
 </form>
+
+
+
 <table class="table table-hover">
     <thead>
     <tr>
@@ -31,6 +34,7 @@
             </c:forEach>
         </c:if>
         <td><c:out value="${value}"></c:out></td>
+        <c:set var="value" value=""></c:set>
         <td>
             <button type="button" class="btn btn-primary">Edit</button>
             <button type="button" class="btn btn-danger">Delete</button>

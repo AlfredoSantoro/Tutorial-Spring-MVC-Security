@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">App MVC</a>
+            <a class="navbar-brand">App MVC</a>
         </div>
 
 
