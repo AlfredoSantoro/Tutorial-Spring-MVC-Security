@@ -1,11 +1,12 @@
 package it.si2001.model;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "skills")
-public class Skills {
+public class Skills implements Serializable {
 
-
+    public static final long serialVersionUID = 1L;
     public Skills(){}
 
     public Skills(String name){

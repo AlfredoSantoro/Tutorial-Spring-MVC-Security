@@ -1,6 +1,7 @@
 package it.si2001.model;
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -8,8 +9,9 @@ import java.util.Set;
 //NB questa annotazione jpa non definisce il vincolo nel db, ma è solo un'informaione. Quindi deve essere definita nel db
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"firstname","lastname"})}
 )
-public class User {
+public class User implements Serializable {
 
+    public static final long serialVersionUID = 1L;
     public User(){}
 
     @Id
@@ -113,8 +115,6 @@ public class User {
 
 
     public MaritalStatus getStatus() {
-        return this.status;
-
-    }
+        return this.status; }
 }
 

@@ -1,12 +1,13 @@
 package it.si2001.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "maritalstatus")
-public class MaritalStatus {
+public class MaritalStatus implements Serializable {
 
-
+    public static final long serialVersionUID = 1L;
     public MaritalStatus(){}
 
     @Id
