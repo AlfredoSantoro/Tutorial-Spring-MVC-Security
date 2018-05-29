@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <form class="col-lg-offset-4" role="search">
     <div class="form-inline">
-        <input type="text" class="form-control" placeholder="Search" id="searchHome">
+        <input type="text" class="form-control" placeholder="Search" id="searchHome" style="width: 30em">
         <button class="btn btn-primary">Search</button>
     </div>
 </form>

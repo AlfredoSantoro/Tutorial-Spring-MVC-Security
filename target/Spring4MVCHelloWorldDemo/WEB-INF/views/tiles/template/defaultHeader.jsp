@@ -6,5 +6,5 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<h2 class="pagehead">Web Application using Spring MVC</h2>
+<h2 style="text-align: center">My Site</h2>
 

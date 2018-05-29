@@ -6,11 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-
-<div class="end">
-    <footer id="red">
-        <h4 class="text">WEB APPLICATION SPRING MVC</h4>
-        <h5 class="text2">TRAINING JAVA SPRING</h5>
-    </footer>
+<div class="container" style="text-align:  center; background: #f5f5f5">
+    <h2>Spring MVC Web Application</h2>
+    <h4>Training Spring -SI2001-</h4>
 </div>
-

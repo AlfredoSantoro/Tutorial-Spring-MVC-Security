@@ -20,5 +20,13 @@
         <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
     </definition>
 
+    <!--Create/Edit page-->
+    <definition name="upinsert" extends="base-definition">
+        <put-attribute name="title" value="UpInsert" />
+        <put-attribute name="body" value="/WEB-INF/views/upinsert.jsp" />
+    </definition>
+
+
+
 
 </tiles-definitions>
