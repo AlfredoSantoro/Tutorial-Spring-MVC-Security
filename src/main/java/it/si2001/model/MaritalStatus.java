@@ -24,18 +24,19 @@ public class MaritalStatus implements Serializable {
         this.status = status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String status) { this.status = status;  }
+
+
+
+    public String getStatus() {return this.status; }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
 
-        return id;
-    }
-
-    public String getStatus() {
-
-        return status;
+        return this.id;
     }
 }
 

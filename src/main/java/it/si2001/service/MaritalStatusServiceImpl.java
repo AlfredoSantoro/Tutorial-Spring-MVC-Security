@@ -4,17 +4,28 @@ import it.si2001.dao.MaritalStatusDao;
 import it.si2001.model.MaritalStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service("MaritalStatusService")
+import java.util.List;
+
+@Service("maritalStatusService")
+@Transactional
 public class MaritalStatusServiceImpl implements MaritalStatusService {
 
-    private MaritalStatusDao service;
+    private
+    MaritalStatusDao dao;
 
     @Autowired
-    public MaritalStatusServiceImpl(MaritalStatusDao m){this.service=m;}
+    public MaritalStatusServiceImpl(MaritalStatusDao dao){ this.dao = dao;}
+
 
     @Override
     public MaritalStatus findByName(String name) {
-        return service.findByName(name);
+        return dao.findByName(name);
+    }
+
+    @Override
+    public List<MaritalStatus> findAllStatus() {
+        return dao.findALl();
     }
 }

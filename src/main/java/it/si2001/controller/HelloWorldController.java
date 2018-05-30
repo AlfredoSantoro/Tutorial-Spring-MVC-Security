@@ -1,13 +1,17 @@
 package it.si2001.controller;
 
 
+import it.si2001.model.MaritalStatus;
+import it.si2001.model.Skills;
 import it.si2001.model.User;
 import it.si2001.service.MaritalStatusService;
+import it.si2001.service.SkillService;
 import it.si2001.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,11 +23,12 @@ import java.util.List;
 public class HelloWorldController {
 
     private UserService Userservice;
-    private MaritalStatusService m;
+    private MaritalStatusService maritalStatusService;
+    private SkillService skillService;
 
     @Autowired
-    public HelloWorldController(UserService userService, MaritalStatusService m){
-        this.Userservice = userService; this.m=m;}
+    public HelloWorldController(UserService userService, MaritalStatusService maritalStatusService, SkillService skillService){
+        this.Userservice = userService; this.maritalStatusService = maritalStatusService; this.skillService= skillService;}
 
         @RequestMapping(method = RequestMethod.GET)
         public String home(ModelMap model){
@@ -43,8 +48,13 @@ public class HelloWorldController {
         if(result.hasErrors())
             return "upinsert";
 
-        user.setStatus(this.m.findByName(user.getStatus().getStatus()));
         this.Userservice.save(user);
         model.addAttribute("success", "Dear " + user.getFirstname() + " your Registration completed successfully ");
         return "success"; }
+
+    @ModelAttribute("statusAttribute")
+    public List<MaritalStatus> initializeMaritalStatus() {return maritalStatusService.findAllStatus(); }
+
+    @ModelAttribute("skillsAttribute")
+    public List<Skills> initializeSkills() {return skillService.findAll(); }
 }

@@ -8,6 +8,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!-- multistep form -->
 
 
@@ -55,22 +57,14 @@
 <div class="form-group">
     <label for="exampleSelect2">Skills</label>
     <form:select multiple="true" class="form-control" path="skills" id="exampleSelect2">
-        <option>C</option>
-        <option>C++</option>
-        <option>Css</option>
-        <option>HTML</option>
-        <option>Java</option>
-        <option>Javascript</option>
+        <form:options items="${skillsAttribute}" itemValue="name" itemLabel="name"/>
     </form:select>
 </div>
 
 <div class="form-group">
     <label for="exampleSelect1">Marital status</label>
-    <form:select class="form-control" id="exampleSelect1" path="status">
-        <option>Divorced</option>
-        <option>Married</option>
-        <option>Single</option>
-        <option>Widowed</option>
+     <form:select class="form-control input-sm" id="exampleSelect1" path="status">
+        <form:options items="${statusAttribute}" itemValue="status" itemLabel="status"/>
     </form:select>
 </div>
     <input type="submit" value="Register" class="btn btn-primary btn-sm">

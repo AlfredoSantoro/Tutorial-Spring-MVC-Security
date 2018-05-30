@@ -1,17 +1,24 @@
 package it.si2001.configuration;
 
+import it.si2001.converter.MaritalStatusConverter;
+
+import it.si2001.converter.SkillConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
+
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
 
 
 /*
@@ -31,10 +38,16 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan(basePackages = "it.si2001")
 public class HelloWorldConfiguration extends WebMvcConfigurerAdapter {
 
+
+    private MaritalStatusConverter maritalStatusConverter;
+    private SkillConverter skillConverter;
+    @Autowired
+    public HelloWorldConfiguration(MaritalStatusConverter Maritalconverter, SkillConverter skillConverter) { this.maritalStatusConverter = Maritalconverter; this.skillConverter = skillConverter;}
+
     @Bean
-    public TilesConfigurer tilesConfigurer(){
+    public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/views/tiles.xml"});
+        tilesConfigurer.setDefinitions(new String[]{"/WEB-INF/views/tiles.xml"});
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer; }
 
@@ -48,11 +61,16 @@ public class HelloWorldConfiguration extends WebMvcConfigurerAdapter {
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
-        return messageSource;
-    }
+        return messageSource; }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
         registry.addResourceHandler("/static/**").addResourceLocations("/static/"); }
+
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {registry.addConverter(maritalStatusConverter); registry.addConverter(skillConverter);}
+
+
 }
