@@ -27,5 +27,20 @@ public class UserServiceImpl implements UserService {
         dao.save(u);
     }
 
+    @Override
+    public User findById(int id) {
+        return dao.findById(id); }
+
+    @Override
+    public void updateUser(User user) {
+        User u = dao.findById(user.getId());
+        u.setFirstname(user.getFirstname());
+        u.setLastname(user.getLastname());
+        u.setStatus(user.getStatus());
+        u.setSkills(user.getSkills());
+        u.setBirthDate(user.getBirthDate());
+        u.setCountry(user.getCountry());
+    }
+
 
 }

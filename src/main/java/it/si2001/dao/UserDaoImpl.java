@@ -16,4 +16,9 @@ public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
     public void save(User user) {
         getEntityManager().persist(user);
     }
+
+    @Override
+    public User findById(int id) {
+        return getByKey(id);
+    }
 }

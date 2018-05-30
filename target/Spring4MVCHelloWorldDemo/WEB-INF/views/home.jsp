@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <form class="col-lg-offset-4" role="search">
     <div class="form-inline">
         <input type="text" class="form-control" placeholder="Search" id="searchHome" style="width: 30em">
@@ -36,8 +37,13 @@
         <td><c:out value="${value}"></c:out></td>
         <c:set var="value" value=""></c:set>
         <td>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+
+
+            <a href="/edit/${user.id}" class="btn btn-primary" >Edit</a>
+
+            <c:url value="//delete/${user.id}" var = "deleteURL"> </c:url>
+            <a  href="${deleteURL}" class="btn btn-danger" >Delete</a>
+
         </td>
     </tr>
     </c:forEach>

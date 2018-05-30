@@ -8,14 +8,13 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!-- multistep form -->
 
-
-<form:form method="post" modelAttribute="user"  class="form-horizontal" action="/">
-
 <div class="container">
+<form:form method="POST" modelAttribute="user"  class="form-horizontal" action="/">
+    <form:hidden path="id"/>
+
 <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">Firstname</label>
     <div class="col-10">
@@ -67,7 +66,9 @@
         <form:options items="${statusAttribute}" itemValue="status" itemLabel="status"/>
     </form:select>
 </div>
+    <div class="form-actions">
     <input type="submit" value="Register" class="btn btn-primary btn-sm">
+    </div>
+</form:form>
 </div>
 
-</form:form>

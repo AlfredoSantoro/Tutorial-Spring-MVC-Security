@@ -32,6 +32,11 @@
         <put-attribute name="body" value="/WEB-INF/views/success.jsp" />
     </definition>
 
+    <definition name="failure" extends="base-definition">
+        <put-attribute name="title" value="failure" />
+        <put-attribute name="body" value="/WEB-INF/views/failure.jsp" />
+    </definition>
+
 
 
 
