@@ -40,7 +40,10 @@ public class HelloWorldController {
         @RequestMapping(value = {"/edit/{id}"},method = RequestMethod.GET)
         public String edit(@PathVariable int id, ModelMap modelMap){
         User user = this.Userservice.findById(id);
-
+        if(user == null){
+            modelMap.addAttribute("failure", "Dear " + user.getFirstname() + " User not found ");
+            return "failure";
+        }
         modelMap.addAttribute("user",user);
         return "upinsert"; }
 
@@ -49,7 +52,15 @@ public class HelloWorldController {
         @RequestMapping(value = {"/delete/{id}"},method = RequestMethod.GET)
         public String delete(@PathVariable int id, ModelMap modelMap){
 
-        return "upinsert"; }
+            User user = this.Userservice.findById(id);
+            System.out.println(user.getLastname() + " " + user.getFirstname());
+            if(user == null){
+                modelMap.addAttribute("failure", "Dear " + user.getFirstname() + " User not found ");
+                return "failure";
+            }
+            this.Userservice.delete(user);
+            modelMap.addAttribute("success", "Dear " + user.getFirstname() + " Your account has been successfully deleted ");
+            return "success"; }
 
 
         @RequestMapping(value = {"/create"}, method = RequestMethod.GET)

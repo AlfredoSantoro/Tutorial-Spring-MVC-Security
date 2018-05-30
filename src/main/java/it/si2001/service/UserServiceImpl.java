@@ -42,5 +42,10 @@ public class UserServiceImpl implements UserService {
         u.setCountry(user.getCountry());
     }
 
+    @Override
+    public void delete(User user) {
+        dao.delete(user);
+    }
+
 
 }

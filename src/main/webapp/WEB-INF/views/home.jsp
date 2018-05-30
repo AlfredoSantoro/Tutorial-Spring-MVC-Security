@@ -1,5 +1,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<script type="text/javascript">
+    function myfunction(valore){
+        var favDialog = document.getElementById("favDialog");
+        var cancelButton = document.getElementById("cancel");
+        var confirmButton = document.getElementById("confirm");
+        favDialog.showModal();
+        cancelButton.addEventListener('click', function(){
+            favDialog.close();
+        })
+
+        confirmButton.addEventListener('click',function(){
+            window.location="/delete/"+valore;
+            favDialog.close();
+        });
+
+    }
+
+</script>
+
 <form class="col-lg-offset-4" role="search">
     <div class="form-inline">
         <input type="text" class="form-control" placeholder="Search" id="searchHome" style="width: 30em">
@@ -37,16 +57,21 @@
         <td><c:out value="${value}"></c:out></td>
         <c:set var="value" value=""></c:set>
         <td>
-
-
             <a href="/edit/${user.id}" class="btn btn-primary" >Edit</a>
-
-            <c:url value="//delete/${user.id}" var = "deleteURL"> </c:url>
-            <a  href="${deleteURL}" class="btn btn-danger" >Delete</a>
+            <a onclick="myfunction(<c:out value="${user.id}"/>)" class="btn btn-danger" >Delete</a>
 
         </td>
     </tr>
     </c:forEach>
     </tbody>
 </table>
+
+<dialog id="favDialog">
+    <label>Confermi di voler eliminare?</label>
+    <menu>
+        <button id="cancel" type="reset">Cancel</button>
+        <button id="confirm" type="submit">Confirm</button>
+    </menu>
+</dialog>
+
 

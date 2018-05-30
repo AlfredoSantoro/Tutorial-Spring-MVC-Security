@@ -21,4 +21,9 @@ public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
     public User findById(int id) {
         return getByKey(id);
     }
+
+    @Override
+    public void delete(User user) {
+        getEntityManager().remove(getEntityManager().merge(user));
+    }
 }
