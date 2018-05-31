@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
                 <li><a href="/create">Create User</a></li>
-                <li><a href="/access">Login</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div>
     </div>

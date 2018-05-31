@@ -52,7 +52,7 @@
 
                             <div class="form-group">
                                 <label>
-                                    <input type="checkbox" name="remember"> Remember Me
+                                    <input type="checkbox" name="ricordami" id="ricordami"> Remember Me
                                 </label>
                             </div>
 

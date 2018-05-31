@@ -70,7 +70,7 @@ public class HelloWorldController {
         return "upinsert"; }
 
 
-        @RequestMapping(value = "/access", method = RequestMethod.POST)
+        @RequestMapping(value = "/login", method = RequestMethod.POST)
         public String verifyLogin(ModelMap modelMap){
         return "";
     }
