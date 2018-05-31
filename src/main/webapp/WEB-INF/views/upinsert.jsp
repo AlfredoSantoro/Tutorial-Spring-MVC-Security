@@ -53,6 +53,26 @@
         </div>
     </div>
 </div>
+
+    <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">Username</label>
+        <div class="col-10">
+            <form:input class="form-control input-sm" type="text" path="username" value="" id="username"/>
+            <div class="has-error" style="color: red">
+                <form:errors path="username" class="help-inline"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="example-date-input" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+            <form:input class="form-control input-sm " type="password" path="password" value="" id="password"/>
+            <div class="has-error" style="color: red">
+                <form:errors path="password" class="help-inline"/>
+            </div>
+        </div>
+    </div>
 <div class="form-group">
     <label for="exampleSelect2">Skills</label>
     <form:select multiple="true" class="form-control" path="skills" id="exampleSelect2">

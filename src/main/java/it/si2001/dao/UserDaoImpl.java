@@ -21,4 +21,10 @@ public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
 
     @Override
     public void delete(User user) {
-        getEntityManager().remove(getEntityManager().merge(user)); }}
+        getEntityManager().remove(getEntityManager().merge(user)); }
+
+    @Override
+    public User findByUsername(String username) {
+        return (User) getEntityManager().createQuery("select u from User u where u.username ='" + username + "'").getSingleResult();
+    }
+}

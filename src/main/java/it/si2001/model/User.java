@@ -1,8 +1,7 @@
 package it.si2001.model;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
-import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
@@ -22,6 +21,36 @@ public class User implements Serializable {
     @Column(name = "user_id",nullable = false,unique = true)
     private int id;
 
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 100)
+    @Column(name="password", length=100, nullable=false)
+    private String password;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Size(max = 150)
+    @NotNull
+    @NotEmpty
+
+    @Column(name="username", length=150, nullable=false)
+    private String username;
 
     @ManyToOne
     @JoinColumn(name = "userStatus")
@@ -59,6 +88,19 @@ public class User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "recordings" , joinColumns = { @JoinColumn(name = "user_id")}, inverseJoinColumns = { @JoinColumn(name = "idSkills")})
     private Set<Skills> skills;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role" , joinColumns = { @JoinColumn(name = "iduser")}, inverseJoinColumns = { @JoinColumn(name = "idrole")})
+    private Set<Role> roles;
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+
+        return roles;
+    }
 
     public User(String fn, String ln, String country, String birthDate, MaritalStatus state) {
         firstname = fn;

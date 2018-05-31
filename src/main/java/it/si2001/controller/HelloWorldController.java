@@ -70,10 +70,12 @@ public class HelloWorldController {
         return "upinsert"; }
 
 
-        @RequestMapping(value = "/login", method = RequestMethod.GET)
-        public String login(ModelMap modelMap){
-            return "login";
-        }
+        @RequestMapping(value = "/access", method = RequestMethod.POST)
+        public String verifyLogin(ModelMap modelMap){
+        return "";
+    }
+
+
         @RequestMapping(method = RequestMethod.POST)
         public String saveRegistration(@Valid User user, BindingResult result, ModelMap model){
 
