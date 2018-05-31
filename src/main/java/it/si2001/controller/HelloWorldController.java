@@ -69,6 +69,11 @@ public class HelloWorldController {
         model.addAttribute("user",user);
         return "upinsert"; }
 
+
+        @RequestMapping(value = "/login", method = RequestMethod.GET)
+        public String login(ModelMap modelMap){
+            return "login";
+        }
         @RequestMapping(method = RequestMethod.POST)
         public String saveRegistration(@Valid User user, BindingResult result, ModelMap model){
 

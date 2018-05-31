@@ -8,5 +8,5 @@
 
 <div class="container" style="text-align:  center; background: #f5f5f5">
     <h2>Spring MVC Web Application</h2>
-    <h4>Training Spring -SI2001-</h4>
+    <h4>Spring Training -SI2001-</h4>
 </div>

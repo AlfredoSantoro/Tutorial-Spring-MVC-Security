@@ -38,6 +38,19 @@
     </definition>
 
 
+    <!-- Base Login -->
+    <definition name="baselogin" template="/WEB-INF/views/tiles/layouts/baselogin.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <!-- Login Page -->
+    <definition name="login" extends="baselogin">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+    </definition>
+
+
 
 
 </tiles-definitions>
