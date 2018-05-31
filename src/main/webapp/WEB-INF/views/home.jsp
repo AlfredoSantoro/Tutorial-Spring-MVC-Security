@@ -19,13 +19,24 @@
     }
 
 </script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+$("#myFilter").on("keyup", function()
+{
+var values = $(this).val().toLowerCase();
+$("#usersTable tr").filter(function()
+{
+$(this).toggle($(this).text().toLowerCase().indexOf(values) > -1)
+});
+});
+});
+</script>
 
-<form class="col-lg-offset-4" role="search">
-    <div class="form-inline">
-        <input type="text" class="form-control" placeholder="Search" id="searchHome" style="width: 30em">
-        <button class="btn btn-primary">Search</button>
-    </div>
-</form>
+<div class="form-inline" style="text-align: center;">
+    <input id="myFilter" type="text" class="form-control" placeholder="Search" style="width: 30em">
+</div>
+
 
 
 
@@ -41,7 +52,7 @@
         <th scope="col">Action</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="usersTable">
     <c:forEach items="${users}" var="user">
     <tr>
         <td>${user.firstname}</td>

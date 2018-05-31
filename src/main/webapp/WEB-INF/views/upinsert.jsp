@@ -12,7 +12,7 @@
 <!-- multistep form -->
 
 <div class="container">
-<form:form method="POST" modelAttribute="user"  class="form-horizontal" action="/">
+<form:form method="POST" modelAttribute="user"  class="form-horizontal" action="/" enctype="multipart/form-data">
     <form:hidden path="id"/>
 
 <div class="form-group row">

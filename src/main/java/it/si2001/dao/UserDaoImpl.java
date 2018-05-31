@@ -26,4 +26,5 @@ public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
     public void delete(User user) {
         getEntityManager().remove(getEntityManager().merge(user));
     }
+
 }
