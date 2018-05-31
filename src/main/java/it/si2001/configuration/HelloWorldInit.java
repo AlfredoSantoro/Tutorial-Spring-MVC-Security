@@ -37,5 +37,4 @@ public class HelloWorldInit extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
-    }
-}
+    }}

@@ -31,8 +31,6 @@ public class JpaConfiguration {
     @Autowired
     public JpaConfiguration(Environment environment){ this.env = environment;}
 
-
-
     /*
     setup data source
      */
@@ -66,9 +64,7 @@ public class JpaConfiguration {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        return hibernateJpaVendorAdapter;
-    }
-
+        return hibernateJpaVendorAdapter; }
 
     /*
      * alcune proprietà specifiche del provider
@@ -79,9 +75,7 @@ public class JpaConfiguration {
         // properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
-        return properties;
-    }
-
+        return properties; }
 
     /*
     JPa Transaction manager per il facotory di entity manager
@@ -91,7 +85,4 @@ public class JpaConfiguration {
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(emf);
-        return txManager;
-    }
-
-}
+        return txManager; }}

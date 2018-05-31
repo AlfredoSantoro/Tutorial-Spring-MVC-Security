@@ -21,11 +21,9 @@ public class MaritalStatusServiceImpl implements MaritalStatusService {
 
     @Override
     public MaritalStatus findByName(String name) {
-        return dao.findByName(name);
-    }
+        return dao.findByName(name); }
 
     @Override
     public List<MaritalStatus> findAllStatus() {
         return dao.findALl();
-    }
-}
+    }}

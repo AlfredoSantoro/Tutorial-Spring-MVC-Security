@@ -31,10 +31,7 @@ public class Skills implements Serializable {
         this.name = name;
     }
 
-    public int getIdSkills() {
-
-        return idSkills;
-    }
+    public int getIdSkills() { return idSkills; }
 
     public String getName() {
         return name;
@@ -71,6 +68,4 @@ public class Skills implements Serializable {
 
     @Override
     public String toString() {
-        return "Skill [id=" + idSkills + ", skill=" + name + "]";
-    }
-}
+        return "Skill [id=" + idSkills + ", skill=" + name + "]"; }}

@@ -65,8 +65,7 @@ public class User implements Serializable {
         lastname = ln;
         this.country = country;
         this.birthDate = birthDate;
-        status = state;
-    }
+        status = state; }
 
     public User(String fn, String ln, String country, String birthDate, MaritalStatus state, Set<Skills> Skills){
         firstname = fn;
@@ -74,13 +73,11 @@ public class User implements Serializable {
         this.country = country;
         this.birthDate = birthDate;
         status = state;
-        this.skills = Skills;
-    }
+        this.skills = Skills; }
 
     public User(String fn, String ln){
         firstname = fn;
-        lastname = ln;
-    }
+        lastname = ln; }
 
 
     public String getBirthDate(){return birthDate;}
@@ -125,7 +122,5 @@ public class User implements Serializable {
     }
 
 
-    public MaritalStatus getStatus() {
-        return this.status; }
-}
+    public MaritalStatus getStatus() { return this.status; }}
 

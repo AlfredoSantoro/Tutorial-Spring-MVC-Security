@@ -15,21 +15,16 @@ public class UserServiceImpl implements UserService {
     private UserDao dao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao){
-        this.dao = userDao; }
+    public UserServiceImpl(UserDao userDao){ this.dao = userDao; }
 
     @Override
-    public List<User> findAllUsers() {
-        return dao.allUsers(); }
+    public List<User> findAllUsers() { return dao.allUsers(); }
 
     @Override
-    public void save(User u) {
-        dao.save(u);
-    }
+    public void save(User u) { dao.save(u); }
 
     @Override
-    public User findById(int id) {
-        return dao.findById(id); }
+    public User findById(int id) { return dao.findById(id); }
 
     @Override
     public void updateUser(User user) {
@@ -39,14 +34,8 @@ public class UserServiceImpl implements UserService {
         u.setStatus(user.getStatus());
         u.setSkills(user.getSkills());
         u.setBirthDate(user.getBirthDate());
-        u.setCountry(user.getCountry());
-    }
+        u.setCountry(user.getCountry()); }
 
     @Override
     public void delete(User user) {
-        dao.delete(user);
-    }
-
-
-
-}
+        dao.delete(user); }}

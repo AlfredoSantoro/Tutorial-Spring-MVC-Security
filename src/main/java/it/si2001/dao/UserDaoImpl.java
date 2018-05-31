@@ -7,24 +7,18 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer,User> implements UserDao {
 
-
     @Override
     public List<User> allUsers() {
         return  getEntityManager().createQuery("select U from User U").getResultList(); }
 
     @Override
     public void save(User user) {
-        getEntityManager().persist(user);
-    }
+        getEntityManager().persist(user); }
 
     @Override
     public User findById(int id) {
-        return getByKey(id);
-    }
+        return getByKey(id); }
 
     @Override
     public void delete(User user) {
-        getEntityManager().remove(getEntityManager().merge(user));
-    }
-
-}
+        getEntityManager().remove(getEntityManager().merge(user)); }}

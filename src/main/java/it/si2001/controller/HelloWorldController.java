@@ -87,5 +87,4 @@ public class HelloWorldController {
         public List<MaritalStatus> initializeMaritalStatus() {return maritalStatusService.findAllStatus(); }
 
         @ModelAttribute("skillsAttribute")
-        public List<Skills> initializeSkills() {return skillService.findAll(); }
-}
+        public List<Skills> initializeSkills() {return skillService.findAll(); }}

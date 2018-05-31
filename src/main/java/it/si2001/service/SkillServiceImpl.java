@@ -13,7 +13,6 @@ import java.util.List;
 public class SkillServiceImpl implements SkillService {
 
     private SkillsDao dao;
-
     @Autowired
     public SkillServiceImpl(SkillsDao dao){this.dao = dao;}
 
@@ -25,5 +24,4 @@ public class SkillServiceImpl implements SkillService {
     @Override
     public List<Skills> findAll() {
         return dao.findAll();
-    }
-}
+    }}
