@@ -56,6 +56,7 @@
                                 </label>
                             </div>
 
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group no-margin">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     Login

@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         private static final String[] USER_MATCHER =
                 {
-                        "/**",
+                        "/",
                         "/edit/**",
                         "/delete/**",
                         "/create"
@@ -99,6 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         tokenBasedservice.setCookieName("ricordami");
         tokenBasedservice.setTokenValiditySeconds(60*60*4);
         tokenBasedservice.setParameter("ricordami");
+        tokenBasedservice.setUseSecureCookie(false);
 
         return tokenBasedservice;}
 
