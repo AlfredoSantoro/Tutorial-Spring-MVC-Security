@@ -27,9 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User u) {
-        Set<Role> set = new HashSet<>();
-        set.add(this.roleDao.getUserRole());
-        u.setRoles(set);
+        u.setRoles(roleDao.getUserRole());
         dao.save(u); }
 
     @Override
