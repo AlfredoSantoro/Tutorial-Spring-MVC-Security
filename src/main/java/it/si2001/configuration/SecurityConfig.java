@@ -66,43 +66,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 {
                         "/",
                         "/edit/**",
-                        "/delete/**",
-                        "/create"
+                        "/delete/**"
                 };
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
                 .antMatchers(USER_MATCHER).access("hasRole('user')")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login")
-                .failureUrl("/login/form?error")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
-                .exceptionHandling()
-                .accessDeniedPage("/login/form?forbidden")
-                .and()
-                .logout()
-                .permitAll()
-                .logoutUrl("/login/form?logout")
-                .invalidateHttpSession(true)
-                .clearAuthentication(true);
+                .rememberMe().rememberMeParameter("ricordami").tokenRepository(tokenRepository)
+                .tokenValiditySeconds(86400).and().exceptionHandling().accessDeniedPage("/Access_Denied");
         }
+
+
 
     @Bean
     public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices()
     {
         PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(
-                "remember-me", userDetailsService, tokenRepository);
-        tokenBasedservice.setCookieName("ricordami");
-        tokenBasedservice.setTokenValiditySeconds(60*60*4);
-        tokenBasedservice.setParameter("ricordami");
-        tokenBasedservice.setUseSecureCookie(false);
+                "ricordami", userDetailsService, tokenRepository);
 
         return tokenBasedservice;}
 
-    public SimpleUrlAuthenticationFailureHandler failureHandler(){
-        return new SimpleUrlAuthenticationFailureHandler("/login/form?error"); }
+
+    @Bean
+    public AuthenticationTrustResolver getAuthenticationTrustResolver()
+    {
+        return new AuthenticationTrustResolverImpl();
+    }
+
 }

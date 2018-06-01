@@ -28,20 +28,17 @@
                     <c:when test="${User != null}">
                         <li><a class="disabled" href="#">Accedi</a></li>
                     </c:when>
+                    <c:otherwise>
+                        <li><a href="/login">Accedi</a></li>
+                    </c:otherwise>
                 </c:choose>
-                <c:otherwise>
-                    <li><a href="/login">Accedi</a></li>
-                </c:otherwise>
+
                 <c:choose>
                     <c:when test="${User != null}">
-                        <form id="myHiddenFormId" action="/login/form?logout" method="post" style="display: none">
-                            <input type="hidden" name="logout" value="${User}">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>
-                        <li><a href="" onclick="${'myHiddenFormId'}.submit(); return false;" title="Logout">Logout ${User}</a></li>
+                        <li><a href="/logout" title="Logout">Logout ${User}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <a class="disabled" href="#">Logout</a>
+                        <li><a class="disabled" href="#">Logout</a></li>
                     </c:otherwise>
                 </c:choose>
 

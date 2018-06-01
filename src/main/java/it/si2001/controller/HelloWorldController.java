@@ -1,17 +1,20 @@
 package it.si2001.controller;
 
 
-import it.si2001.dao.PersistentTokenDaoImpl;
 import it.si2001.model.MaritalStatus;
 import it.si2001.model.Skills;
 import it.si2001.model.User;
-import it.si2001.security.SpringSecurityContext;
 import it.si2001.service.MaritalStatusService;
 import it.si2001.service.SkillService;
 import it.si2001.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -31,12 +34,12 @@ public class HelloWorldController {
         private MaritalStatusService maritalStatusService;
         private SkillService skillService;
         private PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
-        private PersistentTokenDaoImpl persistentTokenDao;
-        private SpringSecurityContext springSecurityContext;
+        private PersistentTokenRepository persistentTokenDao;
+        private AuthenticationTrustResolver authenticationTrustResolver;
 
         @Autowired
-        public HelloWorldController(UserService userService, MaritalStatusService maritalStatusService, SkillService skillService, PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices, @Qualifier("persistenteTokenRepository") PersistentTokenDaoImpl persistentTokenDao, SpringSecurityContext springSecurityContext){
-        this.Userservice = userService; this.maritalStatusService = maritalStatusService; this.skillService= skillService;this.persistentTokenBasedRememberMeServices=persistentTokenBasedRememberMeServices; this.persistentTokenDao=persistentTokenDao;this.springSecurityContext=springSecurityContext;}
+        public HelloWorldController(AuthenticationTrustResolver authenticationTrustResolver, UserService userService, MaritalStatusService maritalStatusService, SkillService skillService, PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices, @Qualifier("persistenteTokenRepository") PersistentTokenRepository persistentTokenDao){
+        this.authenticationTrustResolver=authenticationTrustResolver;this.Userservice = userService; this.maritalStatusService = maritalStatusService; this.skillService= skillService;this.persistentTokenBasedRememberMeServices=persistentTokenBasedRememberMeServices; this.persistentTokenDao=persistentTokenDao;}
 
         @RequestMapping(method = RequestMethod.GET)
         public String home(ModelMap model){
@@ -75,9 +78,8 @@ public class HelloWorldController {
         return "upinsert"; }
 
 
-        @RequestMapping(method = RequestMethod.POST)
+        @RequestMapping(value = {"/create"}, method = RequestMethod.POST)
         public String saveRegistration(@Valid User user, BindingResult result, ModelMap model){
-
         if(result.hasErrors())
             return "upinsert";
 
@@ -94,33 +96,54 @@ public class HelloWorldController {
         public String login(){
             return "login"; }
 
-        @RequestMapping(value = {"/login/form"}, method = RequestMethod.POST)
-        public String logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
 
-            String[] test = httpServletRequest.getParameterValues("logout");
 
-            //disabilitiamo i cookie e rimozione token
+        @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+        public String accessDeniedPage(ModelMap model)
+        {
+            return "accessDenied";
+        }
 
-            if(test != null){
-                Cookie cookie = new Cookie("JSESSIONID",null);
-                cookie.setPath(httpServletRequest.getContextPath() + "/");
-                cookie.setMaxAge(0);
+        @RequestMapping(value="/logout", method = RequestMethod.GET)
+        public String logoutPage (HttpServletRequest request, HttpServletResponse response)
+        {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth != null)
+            {
+                persistentTokenBasedRememberMeServices.logout(request, response, auth);
+                SecurityContextHolder.getContext().setAuthentication(null);
+            }
+            return "redirect:/";
+        }
 
-                Cookie cookieWithoutSlash = new Cookie("JSESSIONID",null);
-                cookieWithoutSlash.setPath(httpServletRequest.getContextPath());
-                cookieWithoutSlash.setMaxAge(0);
 
-                httpServletResponse.addCookie(cookie);
-                httpServletResponse.addCookie(cookieWithoutSlash);
+        private boolean isCurrentAuthenticationAnonymous()
+        {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authenticationTrustResolver.isAnonymous(authentication);
+        }
 
-                if(test.length == 2)
-                    this.persistentTokenDao.removeUserTokens(test[1]); }
+    private String getPrincipal()
+    {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-            return "redirect:/login/form?logout"; }
+        if (principal instanceof UserDetails)
+        {
+            userName = ((UserDetails)principal).getUsername();
+        }
+        else {
 
+            userName = principal.toString();
+        }
+        return userName;
+    }
 
         @ModelAttribute("User")
-        public String getCurrentUser(){return this.springSecurityContext.getCurrentUser();}
+        public String getCurrentUser(){
+            if(this.isCurrentAuthenticationAnonymous())
+                return null;
+            return getPrincipal();}
 
         @ModelAttribute("statusAttribute")
         public List<MaritalStatus> initializeMaritalStatus() {return maritalStatusService.findAllStatus(); }

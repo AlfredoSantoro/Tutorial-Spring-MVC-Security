@@ -1,27 +1,36 @@
 package it.si2001.service;
 
+import it.si2001.dao.RoleDao;
 import it.si2001.dao.UserDao;
+import it.si2001.model.Role;
 import it.si2001.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
     private UserDao dao;
+    private RoleDao roleDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao){ this.dao = userDao; }
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao){ this.dao = userDao; this.roleDao=roleDao;}
 
     @Override
     public List<User> findAllUsers() { return dao.allUsers(); }
 
     @Override
-    public void save(User u) { dao.save(u); }
+    public void save(User u) {
+        Set<Role> set = new HashSet<>();
+        set.add(this.roleDao.getUserRole());
+        u.setRoles(set);
+        dao.save(u); }
 
     @Override
     public User findById(int id) { return dao.findById(id); }

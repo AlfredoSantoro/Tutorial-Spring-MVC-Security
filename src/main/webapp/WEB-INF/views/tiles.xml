@@ -50,6 +50,12 @@
         <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
     </definition>
 
+    <!-- Access denied page -->
+    <definition name="accessDenied" extends="base-definition">
+        <put-attribute name="title" value="Access Denied" />
+        <put-attribute name="body" value="/WEB-INF/views/accessDenied.jsp" />
+    </definition>
+
 
 
 

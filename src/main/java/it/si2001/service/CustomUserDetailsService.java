@@ -52,13 +52,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         /*
         utilizzato per autenticare il nostro utente
          */
-        UserBuilder userBuilder = null;
         // settiamo la username
-        userBuilder = org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
-        userBuilder.disabled(true);
-        userBuilder.password(user.getPassword());
-        userBuilder.authorities(getGrantedAuthorities(user));
-        return userBuilder.build();
+        return  new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true,true,true,true, getGrantedAuthorities(user));
     }
 
 
